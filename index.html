@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sumedha Adhikari</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sumedha Adhikari — HR Business Partner, performance management, rewards and people analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: an HRIS profile turned editorial. A calibration curve is the hero's signature move;
+   three "lenses" (Boardroom / Analyst / Coach) re-skin the page and re-voice the copy. */
+:root {
+  /* Boardroom lens (light default) */
+  --bg: #F3F5F9;
+  --surface: #FFFFFF;
+  --sunken: #E9EDF4;
+  --ink: #121828;
+  --muted: #586174;
+  --line: #D8DEE8;
+  --accent: #2443C7;
+  --accent-soft: #E3E8FB;
+  --accent-ink: #FFFFFF;
+  --signal: #D9502F;
+  --good: #1B7F52;
+  --grid: transparent;
+  --radius: 14px;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-num: var(--font-display);
+  --shadow: 0 1px 0 rgba(18,24,40,.04), 0 12px 32px -18px rgba(18,24,40,.25);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A0F1C; --surface: #111829; --sunken: #0D1322; --ink: #E7ECF6; --muted: #8E98AF;
+    --line: #22304A; --accent: #5CC8FF; --accent-soft: #11324A; --accent-ink: #04121F;
+    --signal: #FFB547; --good: #46D39A; --grid: rgba(92,200,255,.06);
+    --font-num: var(--font-mono); --shadow: 0 0 0 1px rgba(92,200,255,.05), 0 18px 40px -24px rgba(0,0,0,.8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A0F1C; --surface: #111829; --sunken: #0D1322; --ink: #E7ECF6; --muted: #8E98AF;
+  --line: #22304A; --accent: #5CC8FF; --accent-soft: #11324A; --accent-ink: #04121F;
+  --signal: #FFB547; --good: #46D39A; --grid: rgba(92,200,255,.06);
+  --font-num: var(--font-mono); --shadow: 0 0 0 1px rgba(92,200,255,.05), 0 18px 40px -24px rgba(0,0,0,.8);
+  color-scheme: dark;
+}
+/* Explicit lens choices win over the host theme */
+:root[data-mode="boardroom"] {
+  --bg: #F3F5F9; --surface: #FFFFFF; --sunken: #E9EDF4; --ink: #121828; --muted: #586174;
+  --line: #D8DEE8; --accent: #2443C7; --accent-soft: #E3E8FB; --accent-ink: #FFFFFF;
+  --signal: #D9502F; --good: #1B7F52; --grid: transparent; --radius: 14px;
+  --font-num: var(--font-display); --shadow: 0 1px 0 rgba(18,24,40,.04), 0 12px 32px -18px rgba(18,24,40,.25);
+  color-scheme: light;
+}
+:root[data-mode="analyst"] {
+  --bg: #0A0F1C; --surface: #111829; --sunken: #0D1322; --ink: #E7ECF6; --muted: #8E98AF;
+  --line: #22304A; --accent: #5CC8FF; --accent-soft: #11324A; --accent-ink: #04121F;
+  --signal: #FFB547; --good: #46D39A; --grid: rgba(92,200,255,.06); --radius: 6px;
+  --font-num: var(--font-mono); --shadow: 0 0 0 1px rgba(92,200,255,.05), 0 18px 40px -24px rgba(0,0,0,.8);
+  color-scheme: dark;
+}
+:root[data-mode="coach"] {
+  --bg: #F6EEF2; --surface: #FFFCFD; --sunken: #EEE0E7; --ink: #2A1621; --muted: #6C5361;
+  --line: #E5D2DC; --accent: #9B2C63; --accent-soft: #F5DCE8; --accent-ink: #FFFFFF;
+  --signal: #C9741F; --good: #2D8565; --grid: transparent; --radius: 26px;
+  --font-num: var(--font-display); --shadow: 0 1px 0 rgba(42,22,33,.04), 0 16px 36px -20px rgba(155,44,99,.35);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body {
+  background: var(--bg);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--ink);
+  font: 16px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .4s ease, color .4s ease;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.08; letter-spacing: -.02em; }
+p { margin: 0; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 600 12px/1.2 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.num { font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+.section { padding-block: clamp(56px, 8vw, 104px); }
+.section-head { display: grid; gap: 14px; max-width: 720px; margin-bottom: 36px; }
+.section-head h2 { font-size: clamp(30px, 4.4vw, 48px); font-weight: 800; }
+.section-head p { color: var(--muted); font-size: 18px; max-width: 62ch; }
+
+/* ---------- Header ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.mark { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 800 18px/1 var(--font-display); letter-spacing: -.02em; }
+.mark i { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--ink); color: var(--bg); font-style: normal; font-size: 15px; }
+.links { display: flex; gap: 22px; font-size: 14px; color: var(--muted); }
+.links a { text-decoration: none; }
+.links a:hover { color: var(--ink); }
+.lens { display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; background: var(--sunken); border: 1px solid var(--line); }
+.lens button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 600 13px/1 var(--font-body); padding: 8px 12px; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background .2s, color .2s; }
+.lens button svg { width: 14px; height: 14px; }
+.lens button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+@media (max-width: 860px) { .links { display: none; } }
+@media (max-width: 440px) { .lens button span { display: none; } .lens button { padding: 9px; } }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(40px, 6vw, 80px) 40px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero h1 { font-size: clamp(40px, 6.6vw, 80px); font-weight: 800; letter-spacing: -.035em; margin-top: 18px; }
+.hero h1 em { font-style: normal; color: var(--accent); position: relative; white-space: nowrap; }
+.hero h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: .06em; height: .12em; background: var(--accent); opacity: .22; border-radius: 4px; }
+.lede { font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); max-width: 58ch; margin-top: 22px; min-height: 5.2em; }
+.lede [data-lens] { display: none; }
+:root[data-lens="boardroom"] .lede [data-lens="boardroom"],
+:root[data-lens="analyst"] .lede [data-lens="analyst"],
+:root[data-lens="coach"] .lede [data-lens="coach"] { display: inline; animation: fadeUp .5s ease both; }
+@keyframes fadeUp { from { opacity: .2; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: 999px; font: 600 15px/1 var(--font-body); text-decoration: none; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--ink); transition: transform .15s ease, background .2s; }
+.btn:hover { transform: translateY(-1px); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.open-to { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; align-items: center; }
+.open-to .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 4px color-mix(in srgb, var(--good) 22%, transparent); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--good) 8%, transparent); } }
+.open-to span { font-size: 14px; color: var(--muted); flex: 1 1 220px; }
+
+/* Profile card — styled like an HRIS employee record */
+.profile { background: var(--surface); border: 1px solid var(--line); border-radius: calc(var(--radius) + 6px); box-shadow: var(--shadow); overflow: hidden; }
+.profile-top { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 18px; padding: 20px; align-items: center; border-bottom: 1px dashed var(--line); }
+.profile img { width: 112px; height: 112px; object-fit: cover; border-radius: var(--radius); background: var(--sunken); }
+.profile-top h2 { font-size: 24px; font-weight: 800; }
+.profile-top p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 5px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font: 600 12px/1 var(--font-mono); letter-spacing: .04em; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; }
+.field { padding: 14px 20px; border-bottom: 1px solid var(--line); min-width: 0; }
+.field:nth-child(odd) { border-right: 1px solid var(--line); }
+.field:nth-last-child(-n+2) { border-bottom: 0; }
+.field dt { font: 600 11px/1.2 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.field dd { margin: 6px 0 0; font-weight: 600; font-size: 15px; }
+@media (max-width: 400px) { .profile-top { grid-template-columns: 84px minmax(0,1fr); } .profile img { width: 84px; height: 84px; } }
+
+/* ---------- Calibration (signature move) ---------- */
+.calib { margin-top: 48px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 28px; align-items: stretch; background: var(--surface); border: 1px solid var(--line); border-radius: calc(var(--radius) + 6px); padding: clamp(20px, 3vw, 32px); box-shadow: var(--shadow); }
+@media (max-width: 820px) { .calib { grid-template-columns: 1fr; } }
+.calib h3 { font-size: clamp(22px, 2.6vw, 30px); font-weight: 800; margin-top: 10px; }
+.calib-copy { display: grid; gap: 14px; align-content: start; }
+.calib-copy p { color: var(--muted); }
+.calib-result { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.calib-result b { font-size: 44px; line-height: 1; color: var(--good); transition: color .3s; }
+.calib[data-state="before"] .calib-result b { color: var(--signal); }
+.calib-result small { color: var(--muted); font-size: 14px; }
+.chart { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 260px; }
+.dotbox { position: relative; min-height: 250px; height: 100%; border-bottom: 1px solid var(--line); }
+.dotbox canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.calib .axis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; padding-top: 10px; }
+.axis span { font: 500 11px/1.25 var(--font-mono); color: var(--muted); text-align: center; }
+.dot-key { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--muted); }
+.dot-key span { display: inline-flex; align-items: center; gap: 6px; }
+.dot-key i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.note { font-size: 12px; color: var(--muted); }
+
+/* ---------- Stats ---------- */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: calc(var(--radius) + 6px); overflow: hidden; background: var(--surface); }
+.stat { padding: 24px 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.stat:nth-child(4n) { border-right: 0; }
+.stat:nth-last-child(-n+4) { border-bottom: 0; }
+.stat b { font-size: clamp(30px, 3.4vw, 42px); font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--ink); }
+.stat b .u { color: var(--accent); }
+.stat > span { font-size: 14px; color: var(--muted); line-height: 1.4; }
+@media (max-width: 760px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(4n) { border-right: 1px solid var(--line); }
+  .stat:nth-child(2n) { border-right: 0; }
+  .stat:nth-last-child(-n+4) { border-bottom: 1px solid var(--line); }
+  .stat:nth-last-child(-n+2) { border-bottom: 0; }
+}
+
+/* ---------- Working style ---------- */
+.style-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 960px) { .style-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .style-grid { grid-template-columns: 1fr; } }
+.principle { padding: 24px; border-top: 3px solid var(--accent); background: var(--surface); border-radius: 0 0 var(--radius) var(--radius); display: grid; gap: 12px; align-content: start; }
+.principle .verb { font: 800 28px/1 var(--font-display); letter-spacing: -.02em; }
+.principle p { color: var(--muted); font-size: 15px; }
+.principle .proof { font: 500 13px/1.45 var(--font-mono); color: var(--ink); padding-top: 12px; border-top: 1px dashed var(--line); }
+
+/* ---------- Work ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip { appearance: none; border: 1px solid var(--line); background: var(--surface); color: var(--muted); padding: 8px 14px; border-radius: 999px; font: 600 13px/1 var(--font-body); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.cases { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.case { grid-column: span 2; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; min-width: 0; transition: transform .2s ease, border-color .2s; }
+.case:hover { transform: translateY(-3px); border-color: var(--accent); }
+.case.feature { grid-column: span 3; }
+.cases.filtered .case, .cases.filtered .case.feature { grid-column: span 2; }
+@media (max-width: 960px) { .case, .case.feature, .cases.filtered .case, .cases.filtered .case.feature { grid-column: span 3; } }
+@media (max-width: 620px) { .case, .case.feature, .cases.filtered .case, .cases.filtered .case.feature { grid-column: 1 / -1; } }
+.case-meta { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font: 600 11px/1.2 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.case-meta .tag { color: var(--accent); }
+.case h3 { font-size: 22px; font-weight: 800; }
+.case p { color: var(--muted); font-size: 15px; }
+.case .metric { display: flex; align-items: baseline; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.case .metric b { font-size: 32px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+.case .metric span { font-size: 13px; color: var(--muted); line-height: 1.35; flex: 1 1 140px; }
+.case.feature .metric b { font-size: 44px; color: var(--accent); }
+
+/* ---------- Review demo ---------- */
+.review { background: var(--surface); border: 1px solid var(--line); border-radius: calc(var(--radius) + 6px); overflow: hidden; box-shadow: var(--shadow); }
+.review-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 16px 22px; border-bottom: 1px solid var(--line); background: var(--sunken); }
+.review-bar .eyebrow { color: var(--ink); }
+.rows { display: grid; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) 92px; gap: 16px; padding: 14px 22px; border-bottom: 1px solid var(--line); align-items: center; font-size: 15px; }
+.row.head { font: 600 11px/1.2 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-block: 10px; }
+.row .exp { font-weight: 600; }
+.row .ev { color: var(--muted); transition: opacity .35s, transform .35s; }
+.row:not(.done) .ev { opacity: .35; }
+.row .st { font: 600 12px/1 var(--font-mono); text-align: right; color: var(--muted); }
+.row.done .ev { color: var(--ink); opacity: 1; }
+.row.done .st { color: var(--good); }
+@media (max-width: 680px) { .row { grid-template-columns: minmax(0, 1fr) 72px; } .row .ev { grid-column: 1 / -1; grid-row: 2; } .row.head .ev { display: none; } }
+.verdict { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center; padding: 22px; }
+@media (max-width: 680px) { .verdict { grid-template-columns: 1fr; } }
+.meter { height: 10px; border-radius: 999px; background: var(--sunken); overflow: hidden; margin-top: 10px; }
+.meter i { display: block; height: 100%; width: var(--w, 0%); background: linear-gradient(90deg, var(--accent), var(--good)); transition: width .6s ease; }
+.scale { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 8px; font: 500 11px/1.2 var(--font-mono); color: var(--muted); }
+.scale span:last-child { text-align: right; }
+.scale span:nth-child(3) { text-align: center; }
+.outcome { font: 800 clamp(24px, 3vw, 34px)/1 var(--font-display); letter-spacing: -.02em; }
+.outcome small { display: block; font: 500 13px/1.4 var(--font-body); color: var(--muted); margin-top: 8px; letter-spacing: 0; }
+
+/* ---------- Built ---------- */
+.built { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .built { grid-template-columns: 1fr; } }
+.app { display: grid; grid-template-rows: auto 1fr; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s ease, border-color .2s; }
+.app:hover { transform: translateY(-4px); border-color: var(--accent); }
+.app-window { height: 170px; background: var(--sunken); position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.app-window::before { content: ""; position: absolute; top: 12px; left: 14px; width: 42px; height: 8px; background: radial-gradient(circle at 4px 4px, var(--line) 3.5px, transparent 4px) 0 0 / 14px 8px repeat-x; }
+.app-window svg { position: absolute; inset: 30px 18px 0; width: calc(100% - 36px); height: calc(100% - 30px); }
+.app-body { padding: 22px; display: grid; gap: 10px; align-content: start; }
+.app-body h3 { font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.app-body h3 svg { width: 18px; height: 18px; color: var(--accent); flex: none; transition: transform .2s; }
+.app:hover h3 svg { transform: translate(3px, -3px); }
+.app-body p { color: var(--muted); font-size: 15px; }
+.app-body code { font: 500 12px/1.3 var(--font-mono); color: var(--accent); word-break: break-all; }
+
+/* ---------- Capabilities ---------- */
+.caps { display: grid; border-top: 1px solid var(--line); }
+.cap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr); gap: 24px; padding-block: 22px; border-bottom: 1px solid var(--line); align-items: start; }
+@media (max-width: 820px) { .cap { grid-template-columns: 1fr; gap: 10px; } }
+.cap h3 { font-size: 20px; font-weight: 800; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { padding: 5px 10px; border-radius: 999px; background: var(--sunken); font-size: 13px; }
+.cap .shown { font: 500 12px/1.5 var(--font-mono); color: var(--muted); }
+.cap .shown b { color: var(--ink); font-weight: 600; }
+
+/* ---------- Journey ---------- */
+.journey-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+@media (max-width: 900px) { .journey-grid { grid-template-columns: 1fr; } }
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 66px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+.timeline li { display: grid; grid-template-columns: 52px 30px minmax(0, 1fr); gap: 0; padding-bottom: 26px; position: relative; }
+.timeline .yr { font: 600 13px/1.6 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.timeline .pin { width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--muted); margin: 5px 0 0 9px; position: relative; z-index: 1; }
+.timeline li.role .pin { background: var(--accent); border-color: var(--accent); }
+.timeline li.award .pin { background: var(--signal); border-color: var(--signal); border-radius: 3px; transform: rotate(45deg); }
+.timeline li.now .pin { box-shadow: 0 0 0 5px var(--accent-soft); }
+.timeline h3 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.timeline p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+.timeline .org { font: 600 12px/1.4 var(--font-mono); color: var(--accent); letter-spacing: .04em; margin-top: 2px; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); }
+.photos figure { margin: 0; display: grid; gap: 8px; }
+.photos figure:nth-child(2) { margin-top: 48px; }
+.photos img { width: 100%; aspect-ratio: 9 / 15; object-fit: cover; border-radius: var(--radius); background: var(--sunken); display: block; max-width: 100%; }
+.photos figcaption { font-size: 13px; color: var(--muted); }
+@media (max-width: 900px) { .photos { position: static; } }
+
+/* ---------- Awards ---------- */
+.shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 960px) { .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .shelf { grid-template-columns: 1fr; } }
+.award { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; gap: 10px; align-content: start; position: relative; overflow: hidden; }
+.award .y { font: 800 44px/1 var(--font-num); color: var(--accent); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.award h3 { font-size: 18px; font-weight: 800; }
+.award p { color: var(--muted); font-size: 14px; }
+.award .by { font: 600 11px/1.2 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.award.top { grid-column: span 2; background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.award.top .y { color: var(--bg); font-size: 64px; }
+.award.top p, .award.top .by { color: color-mix(in srgb, var(--bg) 72%, transparent); }
+.award.top::after { content: "★"; position: absolute; right: -10px; bottom: -40px; font-size: 180px; line-height: 1; color: var(--bg); opacity: .07; }
+@media (max-width: 480px) { .award.top { grid-column: auto; } }
+.award.cred .y { font-size: 28px; }
+
+/* ---------- Contact ---------- */
+.contact { background: var(--ink); color: var(--bg); border-radius: calc(var(--radius) + 10px); padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+.contact h2 { font-size: clamp(32px, 4.6vw, 54px); font-weight: 800; }
+.contact p { color: color-mix(in srgb, var(--bg) 74%, transparent); margin-top: 16px; max-width: 52ch; }
+.contact ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.contact li { display: flex; gap: 10px; align-items: baseline; }
+.contact li::before { content: "→"; color: var(--accent); font-family: var(--font-mono); }
+:root[data-mode="analyst"] .contact li::before, :root[data-lens="analyst"] .contact li::before { color: var(--accent-ink); }
+.reach { display: grid; gap: 12px; align-content: start; }
+.reach-row { border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 6px; min-width: 0; }
+.reach-row .eyebrow { color: color-mix(in srgb, var(--bg) 62%, transparent); }
+.reach-row .val { font: 600 17px/1.3 var(--font-mono); word-break: break-all; user-select: all; }
+.copy { justify-self: start; appearance: none; border: 0; background: var(--bg); color: var(--ink); padding: 9px 14px; border-radius: 999px; font: 600 13px/1 var(--font-body); cursor: pointer; margin-top: 4px; }
+footer { padding-block: 36px 48px; color: var(--muted); font-size: 13px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: var(--surface); color: var(--ink); }
+
+/* Easter egg */
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; background: var(--ink); color: var(--bg); padding: 12px 18px; border-radius: 999px; font-weight: 600; font-size: 14px; z-index: 60; transition: opacity .3s, transform .3s; max-width: calc(100% - 32px); text-align: center; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Wow layer ---------- */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+.hero h1 em { display: inline-block; }
+.hero-grid { perspective: 1400px; }
+.profile { position: relative; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .3s ease, background .4s; will-change: transform; }
+.profile::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 62%); opacity: var(--glare, 0); transition: opacity .3s; }
+.case, .principle, .app { position: relative; }
+.case::before, .principle::before, .app::before, .award:not(.top)::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(260px circle at var(--mx, -999px) var(--my, -999px), color-mix(in srgb, var(--accent) 13%, transparent), transparent 70%); }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, transparent calc(20% - 1px), var(--line) 0 20%, transparent 0 calc(40% - 1px), var(--line) 0 40%, transparent 0 calc(60% - 1px), var(--line) 0 60%, transparent 0 calc(80% - 1px), var(--line) 0 80%, transparent 0); }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .12s linear; }
+.stage { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: flex; align-items: center; gap: 10px; padding: 9px 14px 9px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: 13px; }
+.stage i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.stage .lbl { font: 600 10px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.stage b { font: 600 12px/1 var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .stage { display: none; } }
+.kbtn { appearance: none; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); border-radius: 999px; padding: 7px 10px 7px 12px; font: 500 13px/1 var(--font-body); cursor: pointer; }
+.kbtn svg { width: 14px; height: 14px; }
+.kbtn kbd { font-size: 11px; }
+.top-right { display: flex; align-items: center; gap: 10px; }
+@media (max-width: 560px) { .kbtn span, .kbtn kbd { display: none; } .kbtn { padding: 9px; } }
+.palette { position: fixed; inset: 0; z-index: 70; background: color-mix(in srgb, var(--ink) 38%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; justify-items: center; align-items: start; padding: calc(12vh + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); animation: palIn .18s ease; }
+@keyframes palIn { from { opacity: 0; } }
+.pal-box { width: min(560px, 100%); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.45); overflow: hidden; animation: palUp .22s cubic-bezier(.2,.8,.2,1); }
+@keyframes palUp { from { transform: translateY(10px) scale(.98); } }
+.pal-box input { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: 500 17px/1 var(--font-body); padding: 18px 20px; outline: none; }
+.pal-box ul { list-style: none; margin: 0; padding: 8px; max-height: 50vh; overflow-y: auto; }
+.pal-box li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 10px; cursor: pointer; font-size: 15px; }
+.pal-box li small { font: 600 10px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.pal-box li[aria-selected="true"] { background: var(--accent-soft); color: var(--ink); }
+.pal-box li[aria-selected="true"] small { color: var(--accent); }
+.pal-box .empty { padding: 18px 12px; color: var(--muted); font-size: 14px; cursor: default; }
+.pal-foot { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); background: var(--sunken); }
+.pal-foot kbd { margin-right: 3px; }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top"><i>SA</i>Sumedha Adhikari</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#work">Work</a><a href="#built">Built</a><a href="#capabilities">Capabilities</a><a href="#journey">Journey</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="top-right">
+    <button class="kbtn" id="palBtn" type="button" aria-label="Open command menu"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span>Jump to</span><kbd>⌘K</kbd></button>
+    <div class="lens" role="group" aria-label="Choose a lens">
+      <button type="button" data-set="boardroom" aria-pressed="false" title="Boardroom: outcomes first"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="12" height="9" rx="1.5"/><path d="M5 14h6"/></svg><span>Boardroom</span></button>
+      <button type="button" data-set="analyst" aria-pressed="false" title="Analyst: the numbers"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13V8M8 13V3M13 13V6"/></svg><span>Analyst</span></button>
+      <button type="button" data-set="coach" aria-pressed="false" title="Coach: the people side"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="2.2"/><circle cx="11" cy="6.5" r="1.8"/><path d="M1.8 13c.6-2.3 2-3.4 3.7-3.4s3.1 1.1 3.7 3.4M9.6 10.3c.4-.3.9-.5 1.4-.5 1.4 0 2.4.9 2.9 2.7"/></svg><span>Coach</span></button>
+    </div>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">HR Business Partner · Performance · Rewards · People Analytics</div>
+          <h1 aria-label="I make people decisions fair, fast and measurable.">I make people decisions <em id="rot" aria-hidden="true">fair</em>, fast and measurable.</h1>
+          <p class="lede">
+            <span data-lens="boardroom">Nearly seven years across Deloitte and Infosys turning performance, pay and workforce data into decisions senior leaders can defend. 65,000+ workforce in scope, programs delivered on time with zero re-work.</span>
+            <span data-lens="analyst">I build the numbers leaders decide on: a Power BI talent dashboard over 65,000+ headcount, attrition diagnostics, calibration analytics, and an AI model that maps manager feedback to rating expectations.</span>
+            <span data-lens="coach">Behind every rating is a manager having a hard conversation. I coach managers, resolve people matters end to end, and design programs that help leaders lead their teams better.</span>
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#work">See the work
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5"/></svg></a>
+            <a class="btn" href="#review" id="jumpReview">Run a performance review on me</a>
+          </div>
+          <div class="open-to"><i class="dot"></i><span>Open to HRBP leadership roles and strategic people projects · Bengaluru</span></div>
+        </div>
+
+        <article class="profile" aria-label="Profile summary">
+          <div class="profile-top">
+            <img src="assets/headshot.jpg" alt="Portrait of Sumedha Adhikari" width="112" height="112">
+            <div>
+              <h2>Sumedha Adhikari</h2>
+              <p>Assistant Manager, Talent Business Advisory (HRBP) · Deloitte USI</p>
+              <span class="badge">SHRM-CP</span>
+            </div>
+          </div>
+          <dl class="fields">
+            <div class="field"><dt>Experience</dt><dd class="num">~7 years</dd></div>
+            <div class="field"><dt>Practitioners partnered</dt><dd class="num">2,000+</dd></div>
+            <div class="field"><dt>Workforce in scope</dt><dd class="num">65,000+</dd></div>
+            <div class="field"><dt>Comp cycle run</dt><dd class="num">30,000+ people</dd></div>
+            <div class="field"><dt>Awards</dt><dd class="num">5 since 2021</dd></div>
+            <div class="field"><dt>Education</dt><dd>PGDM (HR), TAPMI</dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="calib" id="calib" data-state="before">
+        <div class="calib-copy">
+          <div class="eyebrow">Signature move · Calibration</div>
+          <h3>Ratings drift. I pull them back to fair.</h3>
+          <p>I designed and ran a calibration program at Deloitte USI that reduced rating distribution skewness by 10%, so pay-for-performance decisions rest on ratings that mean the same thing across teams.</p>
+          <div class="calib-result"><b class="num" id="calibNum">Skewed</b><small id="calibCap">Press calibrate to see the shift</small></div>
+          <div><button class="btn primary" type="button" id="calibBtn">Calibrate</button></div>
+          <p class="note">The distribution is illustrative, not actual Deloitte data. The 10% outcome is real.</p>
+        </div>
+        <div class="chart" aria-label="Rating distribution chart">
+          <div class="dotbox"><canvas id="dots" role="img" aria-label="Unit chart of 650 dots, each about 100 people, across five rating levels. Before calibration ratings bunch at Exceeds and Outstanding; after, they centre on Meets."></canvas></div>
+          <div class="axis"><span>Below</span><span>Partly meets</span><span>Meets</span><span>Exceeds</span><span>Outstanding</span></div>
+          <div class="dot-key"><span><i style="background:var(--accent)"></i>≈ 100 people</span><span><i style="background:var(--signal)"></i>Top-heavy ratings</span><span><i style="background:var(--good)"></i>Moved in calibration</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:24px" aria-label="Outcomes in numbers">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><b class="num"><span data-count="65000">65,000</span><span class="u">+</span></b><span>workforce covered by my performance process redesign</span></div>
+        <div class="stat"><b class="num"><span data-count="30000">30,000</span><span class="u">+</span></b><span>employees in the compensation cycle I ran at Infosys</span></div>
+        <div class="stat"><b class="num"><span data-count="2000">2,000</span><span class="u">+</span></b><span>practitioners I partner on as HRBP</span></div>
+        <div class="stat"><b class="num"><span class="u">−</span><span data-count="10">10</span><span class="u">%</span></b><span>rating distribution skewness after calibration</span></div>
+        <div class="stat"><b class="num"><span data-count="300">300</span><span class="u">+</span></b><span>Talent hours a year projected saved by my dashboard</span></div>
+        <div class="stat"><b class="num"><span data-count="200">200</span><span class="u">+</span></b><span>leader hours saved, delivered with zero re-work</span></div>
+        <div class="stat"><b class="num"><span data-count="5000">5,000</span><span class="u">+</span></b><span>listens in Q1 for the leadership podcast I launched</span></div>
+        <div class="stat"><b class="num"><span data-count="3">3</span></b><span>HR tools I've built and shipped myself</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="style" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How I work</div>
+        <h2>Four habits behind every outcome.</h2>
+        <p>The way I work is consistent whether I'm in a calibration room, a pay review or a Power BI model.</p>
+      </div>
+      <div class="style-grid">
+        <div class="principle"><div class="verb">Advise</div><p>Be the HR partner leaders call first. Take a request end to end across COEs so the leader deals with one person.</p><div class="proof">Senior leaders across multiple BUs · 2,000+ practitioners</div></div>
+        <div class="principle"><div class="verb">Calibrate</div><p>Make outcomes fair before they become pay. Check ratings, pay fitment and internal equity against the market and each other.</p><div class="proof">−10% rating skewness · 30,000+ comp cycle</div></div>
+        <div class="principle"><div class="verb">Quantify</div><p>Bring the data to the conversation. Root-cause the attrition, size the problem, then tell the story in one screen.</p><div class="proof">65,000+ headcount dashboard · 300+ hrs/yr</div></div>
+        <div class="principle"><div class="verb">Build</div><p>When a process is slow or biased, prototype the fix. I ship working tools instead of waiting for a roadmap.</p><div class="proof">First AI project in Business Advisory · 3 apps live</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Selected work</div>
+        <h2>Projects I've delivered, and what changed.</h2>
+        <p>Each one started with a business problem and ended with a number. Filter by the capability you're hiring for.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="performance" aria-pressed="false">Performance</button>
+        <button class="chip" type="button" data-filter="rewards" aria-pressed="false">Rewards</button>
+        <button class="chip" type="button" data-filter="analytics" aria-pressed="false">Analytics</button>
+        <button class="chip" type="button" data-filter="ai" aria-pressed="false">AI &amp; tools</button>
+        <button class="chip" type="button" data-filter="advisory" aria-pressed="false">Advisory &amp; people</button>
+      </div>
+      <div class="cases" id="cases">
+        <article class="case feature" data-tags="performance">
+          <div class="case-meta"><span class="tag">Performance</span><span>Deloitte USI · 2025–</span></div>
+          <h3>Calibration program</h3>
+          <p>Ratings were bunching at the top in some teams and not others, which made pay-for-performance hard to defend. I designed the calibration program, set the review cadence with leaders and ran it alongside the performance cycle.</p>
+          <div class="metric"><b class="num">−10%</b><span>rating distribution skewness, enabling equitable pay-for-performance decisions</span></div>
+        </article>
+        <article class="case feature" data-tags="analytics">
+          <div class="case-meta"><span class="tag">Analytics</span><span>Deloitte USI · Power BI</span></div>
+          <h3>Executive Talent Dashboard</h3>
+          <p>Leaders were asking the Talent team for the same cuts of data every week. I led a Power BI dashboard that brings several data sources into one view for C-suite decisions. It won the Applause Award in 2023.</p>
+          <div class="metric"><b class="num">300+ hrs</b><span>of Talent time a year projected saved, across 65,000+ headcount</span></div>
+        </article>
+        <article class="case" data-tags="ai performance">
+          <div class="case-meta"><span class="tag">AI &amp; tools</span><span>Deloitte USI</span></div>
+          <h3>AI Rating Recommender</h3>
+          <p>Business Advisory's first AI project. It maps manager feedback to level-wise expectation frameworks and suggests an unbiased rating.</p>
+          <div class="metric"><b class="num">1st</b><span>AI deployment in the team</span></div>
+        </article>
+        <article class="case" data-tags="performance">
+          <div class="case-meta"><span class="tag">Performance</span><span>Deloitte Consulting</span></div>
+          <h3>Performance process optimization</h3>
+          <p>Led the redesign of performance management steps across Deloitte Consulting Services. Delivered on time with zero re-work.</p>
+          <div class="metric"><b class="num">200+ hrs</b><span>leader hours saved across 65,000+ practitioners</span></div>
+        </article>
+        <article class="case" data-tags="rewards">
+          <div class="case-meta"><span class="tag">Rewards</span><span>Infosys · 2020–22</span></div>
+          <h3>Annual compensation review</h3>
+          <p>Ran the end-to-end cycle: increments, promotions and variable pay, with full governance and audit readiness.</p>
+          <div class="metric"><b class="num">30,000+</b><span>employees covered</span></div>
+        </article>
+        <article class="case" data-tags="rewards">
+          <div class="case-meta"><span class="tag">Rewards</span><span>Infosys</span></div>
+          <h3>Job evaluation &amp; pay fitment</h3>
+          <p>Set pay for overseas-to-base-hire transitions and lateral moves using job evaluation, market benchmarks, internal equity and incumbent analysis.</p>
+          <div class="metric"><b class="num">ACE</b><span>HR Award 2021 for execution in Total Rewards</span></div>
+        </article>
+        <article class="case" data-tags="advisory">
+          <div class="case-meta"><span class="tag">Advisory &amp; people</span><span>Deloitte USI</span></div>
+          <h3>Leadership podcast</h3>
+          <p>Launched an internal podcast that put senior leaders in direct conversation with practitioners across the firm.</p>
+          <div class="metric"><b class="num">5,000+</b><span>listens in the first quarter</span></div>
+        </article>
+        <article class="case" data-tags="advisory">
+          <div class="case-meta"><span class="tag">Advisory &amp; people</span><span>Deloitte USI · with L&amp;D</span></div>
+          <h3>Manager Capability Program</h3>
+          <p>Designed learning interventions with the business and L&amp;D to speed up leadership readiness and improve how teams are run.</p>
+          <div class="metric"><b class="num">Business × L&amp;D</b><span>co-designed program</span></div>
+        </article>
+        <article class="case" data-tags="analytics advisory">
+          <div class="case-meta"><span class="tag">Analytics</span><span>Deloitte USI</span></div>
+          <h3>Attrition diagnostics</h3>
+          <p>Root-cause analysis on large people datasets, turned into recommendations leadership could act on.</p>
+          <div class="metric"><b class="num">RCA</b><span>insight to leadership action</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="review" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Try it</div>
+        <h2>Run a performance review on me.</h2>
+        <p>This is how my AI Rating Recommender thinks: map evidence to the expectations for the level, then recommend a rating. Here it runs on my own resume.</p>
+      </div>
+      <div class="review" id="reviewBox">
+        <div class="review-bar">
+          <span class="eyebrow">Subject: S. Adhikari · Level: Assistant Manager · Cycle: 2026</span>
+          <button class="btn primary" type="button" id="runReview">Run review</button>
+        </div>
+        <div class="rows" id="rows">
+          <div class="row head"><span>Level expectation</span><span class="ev">Evidence found</span><span class="st">Status</span></div>
+          <div class="row"><span class="exp">Advises senior leaders on talent strategy</span><span class="ev">Trusted HR advisor to senior leadership across multiple BUs; 2,000+ practitioners</span><span class="st">Pending</span></div>
+          <div class="row"><span class="exp">Improves fairness of outcomes</span><span class="ev">Calibration program cut rating skewness by 10%</span><span class="st">Pending</span></div>
+          <div class="row"><span class="exp">Uses data to shape decisions</span><span class="ev">C-suite Talent Dashboard on 65,000+ headcount; 300+ hrs/yr projected saving</span><span class="st">Pending</span></div>
+          <div class="row"><span class="exp">Delivers at scale without re-work</span><span class="ev">Performance process redesign for 65,000+, on time, zero re-work, 200+ leader hours saved</span><span class="st">Pending</span></div>
+          <div class="row"><span class="exp">Innovates beyond the role</span><span class="ev">First AI project in Business Advisory; three self-built HR tools</span><span class="st">Pending</span></div>
+          <div class="row"><span class="exp">Recognised by the organisation</span><span class="ev">Five awards across Deloitte USI and Infosys, 2021–2026</span><span class="st">Pending</span></div>
+        </div>
+        <div class="verdict">
+          <div>
+            <div class="eyebrow">Recommendation</div>
+            <div class="meter"><i id="meter"></i></div>
+            <div class="scale"><span>Below</span><span></span><span>Meets</span><span></span><span>Outstanding</span></div>
+          </div>
+          <div class="outcome" id="outcome" aria-live="polite">Awaiting evidence<small>Press Run review</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="built" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Built by me</div>
+        <h2>I prototype the HR tools I wish existed.</h2>
+        <p>Three working apps I designed and shipped outside my day job. Each one starts from a problem I've seen as an HRBP.</p>
+      </div>
+      <div class="built">
+        <a class="app" href="https://hrbpcoach.lovable.app" target="_blank" rel="noopener">
+          <div class="app-window" aria-hidden="true">
+            <svg viewBox="0 0 300 140" fill="none">
+              <rect x="0" y="10" width="190" height="34" rx="12" fill="var(--surface)" stroke="var(--line)"/>
+              <rect x="14" y="22" width="120" height="10" rx="5" fill="var(--line)"/>
+              <rect x="100" y="56" width="200" height="34" rx="12" fill="var(--accent)"/>
+              <rect x="116" y="68" width="140" height="10" rx="5" fill="var(--accent-ink)" opacity=".7"/>
+              <rect x="0" y="102" width="150" height="34" rx="12" fill="var(--surface)" stroke="var(--line)"/>
+              <rect x="14" y="114" width="90" height="10" rx="5" fill="var(--line)"/>
+            </svg>
+          </div>
+          <div class="app-body">
+            <h3>HRBP Coach <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 11 5M6 5h5v5"/></svg></h3>
+            <p>A coaching companion for HR business partners, built around the people situations HRBPs handle with managers and leaders.</p>
+            <code>hrbpcoach.lovable.app</code>
+          </div>
+        </a>
+        <a class="app" href="https://rating-reflex.lovable.app" target="_blank" rel="noopener">
+          <div class="app-window" aria-hidden="true">
+            <svg viewBox="0 0 300 140" fill="none">
+              <rect x="10" y="96" width="40" height="40" rx="4" fill="var(--line)"/>
+              <rect x="66" y="64" width="40" height="72" rx="4" fill="var(--line)"/>
+              <rect x="122" y="20" width="40" height="116" rx="4" fill="var(--accent)"/>
+              <rect x="178" y="56" width="40" height="80" rx="4" fill="var(--line)"/>
+              <rect x="234" y="100" width="40" height="36" rx="4" fill="var(--line)"/>
+              <circle cx="142" cy="8" r="6" fill="var(--signal)"/>
+            </svg>
+          </div>
+          <div class="app-body">
+            <h3>Rating Reflex <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 11 5M6 5h5v5"/></svg></h3>
+            <p>Builds on my rating-recommender work: a faster, more consistent read on performance ratings for managers and HR.</p>
+            <code>rating-reflex.lovable.app</code>
+          </div>
+        </a>
+        <a class="app" href="https://career-quest-kappa-lyart.vercel.app" target="_blank" rel="noopener">
+          <div class="app-window" aria-hidden="true">
+            <svg viewBox="0 0 300 140" fill="none">
+              <path d="M10 126 C70 126 70 80 130 80 S 200 30 280 22" stroke="var(--line)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
+              <circle cx="10" cy="126" r="9" fill="var(--accent)"/>
+              <circle cx="130" cy="80" r="9" fill="var(--accent)"/>
+              <circle cx="205" cy="45" r="9" fill="var(--surface)" stroke="var(--accent)" stroke-width="3"/>
+              <path d="M272 6 l8 14 h-16z" fill="var(--signal)"/>
+              <rect x="270" y="20" width="3" height="16" fill="var(--ink)"/>
+            </svg>
+          </div>
+          <div class="app-body">
+            <h3>Career Quest <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 11 5M6 5h5v5"/></svg></h3>
+            <p>A game-style take on career growth: explore paths, levels and the next step as a quest instead of a form.</p>
+            <code>career-quest-kappa-lyart.vercel.app</code>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="capabilities" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Capabilities</div>
+        <h2>What you get when you hire me.</h2>
+        <p>Five areas, each backed by work shown above.</p>
+      </div>
+      <div class="caps">
+        <div class="cap"><h3>HR business partnering</h3><div class="tags"><span>Senior leadership advisory</span><span>Manager coaching</span><span>Employee relations</span><span>Change management</span><span>Cross-COE delivery</span></div><div class="shown"><b>Shown in</b> · HRBP to 2,000+ practitioners, Manager Capability Program</div></div>
+        <div class="cap"><h3>Talent &amp; performance</h3><div class="tags"><span>Performance management</span><span>Calibration</span><span>Talent strategy</span><span>Org design inputs</span></div><div class="shown"><b>Shown in</b> · Calibration program, process optimization, AI Rating Recommender</div></div>
+        <div class="cap"><h3>Rewards &amp; compensation</h3><div class="tags"><span>Merit &amp; increment cycles</span><span>Variable pay</span><span>Incentive design</span><span>Job evaluation</span><span>Promotion fitment</span></div><div class="shown"><b>Shown in</b> · 30,000+ comp cycle, pay fitment, merit planning at Deloitte</div></div>
+        <div class="cap"><h3>Analytics &amp; storytelling</h3><div class="tags"><span>Power BI</span><span>Attrition analytics</span><span>Root-cause analysis</span><span>HRIS reporting</span><span>Advanced Excel</span><span>C-suite insight</span></div><div class="shown"><b>Shown in</b> · Executive Talent Dashboard, attrition diagnostics</div></div>
+        <div class="cap"><h3>Governance &amp; HR tech</h3><div class="tags"><span>HR governance</span><span>Compliance readiness</span><span>Data governance</span><span>HRIS platforms</span><span>AI prototyping</span></div><div class="shown"><b>Shown in</b> · Audit-ready comp cycle, three shipped apps</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="journey" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Career journey</div>
+        <h2>From economics to HR tech, one step at a time.</h2>
+      </div>
+      <div class="journey-grid">
+        <div>
+          <div class="legend"><span><i style="background:var(--accent)"></i>Role</span><span><i style="background:var(--signal);border-radius:2px"></i>Award</span><span><i style="border:2px solid var(--muted)"></i>Learning</span></div>
+          <ol class="timeline">
+            <li class="award"><span class="yr">2026</span><span class="pin"></span><div><h3>Outstanding Award</h3><p>Innovation in HR tech and AI-enabled performance analytics.</p></div></li>
+            <li class="role now"><span class="yr">2025</span><span class="pin"></span><div><h3>Assistant Manager, Talent Business Advisory (HRBP)</h3><div class="org">Deloitte USI</div><p>Calibration, rewards, ER, the Talent Dashboard and the first AI rating recommender.</p></div></li>
+            <li class="award"><span class="yr">2024</span><span class="pin"></span><div><h3>Outstanding Award</h3><p>Innovation in HR operations and data-driven solutioning.</p></div></li>
+            <li class="award"><span class="yr">2023</span><span class="pin"></span><div><h3>Applause Award &amp; Spot Award</h3><p>For the Talent Dashboard, and for stakeholder service.</p></div></li>
+            <li class="role"><span class="yr">2022</span><span class="pin"></span><div><h3>Senior Analyst, Talent Business Advisory (HRBP)</h3><div class="org">Deloitte USI</div><p>Manager Capability Program, people analytics, leadership podcast.</p></div></li>
+            <li class="award"><span class="yr">2021</span><span class="pin"></span><div><h3>ACE HR Award · People Analytics certification</h3><p>Execution excellence in Total Rewards at Infosys.</p></div></li>
+            <li class="role"><span class="yr">2020</span><span class="pin"></span><div><h3>Senior Associate Lead, Total Rewards &amp; Compensation</h3><div class="org">Infosys</div><p>Ran the annual comp review for 30,000+ employees. Earned SHRM-CP the same year.</p></div></li>
+            <li><span class="yr">2019</span><span class="pin"></span><div><h3>HR Intern</h3><div class="org">Hikal</div><p>Built a skill and knowledge matrix covering 19 production and engineering roles.</p></div></li>
+            <li><span class="yr">2018</span><span class="pin"></span><div><h3>PGDM (HR), TAPMI Manipal</h3><p>TAPMI Achievers Club 2020 for contribution to the curriculum.</p></div></li>
+            <li><span class="yr">2014</span><span class="pin"></span><div><h3>BA (Hons) Economics, University of Delhi</h3><p>Where the habit of reading people through data started.</p></div></li>
+          </ol>
+        </div>
+        <div class="photos">
+          <figure><img src="assets/linkedin-visit.jpg" alt="Sumedha in the lobby of a LinkedIn office" loading="lazy"><figcaption>Learning from the people-tech world</figcaption></figure>
+          <figure><img src="assets/city-evening.jpg" alt="Sumedha in a city plaza at dusk" loading="lazy"><figcaption>Always curious, always moving</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="awards" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Accolades</div>
+        <h2>Recognised every year since 2021.</h2>
+      </div>
+      <div class="shelf">
+        <div class="award top"><span class="by">Deloitte USI</span><span class="y">2026</span><h3>Outstanding Award</h3><p>Exceptional innovation in HR tech and AI-enabled performance analytics.</p></div>
+        <div class="award"><span class="by">Deloitte USI</span><span class="y">2024</span><h3>Outstanding Award</h3><p>Innovation in HR operations and data-driven solutioning.</p></div>
+        <div class="award"><span class="by">Deloitte USI</span><span class="y">2023</span><h3>Applause Award</h3><p>Talent Dashboard enabling executive decision-making.</p></div>
+        <div class="award"><span class="by">Deloitte USI</span><span class="y">2023</span><h3>Spot Award</h3><p>Exceptional stakeholder service and business feedback.</p></div>
+        <div class="award"><span class="by">Infosys</span><span class="y">2021</span><h3>ACE HR Award</h3><p>Execution excellence in Total Rewards.</p></div>
+        <div class="award cred"><span class="by">Certification</span><span class="y">SHRM-CP</span><h3>SHRM Certified Professional</h3><p>Society for Human Resource Management, 2020.</p></div>
+        <div class="award cred"><span class="by">TAPMI · Certification</span><span class="y">2020–21</span><h3>Achievers Club &amp; People Analytics</h3><p>TAPMI Achievers Club 2020; Infosys HR People Analytics Core, 2021.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <div class="eyebrow" style="color:inherit;opacity:.7">Let's talk</div>
+          <h2>Have a people problem worth measuring?</h2>
+          <p>I'm looking for roles and projects where HR partnering, performance, rewards and analytics meet.</p>
+          <ul>
+            <li>HRBP and Talent Advisory leadership roles</li>
+            <li>Performance, calibration and rewards redesign</li>
+            <li>People analytics and HR-tech / AI projects</li>
+          </ul>
+        </div>
+        <div class="reach">
+          <div class="reach-row"><span class="eyebrow">Email</span><span class="val" id="email">sumiadhikari96@gmail.com</span><button class="copy" type="button" id="copyEmail">Copy email</button></div>
+          <div class="reach-row"><span class="eyebrow">Based in</span><span class="val">Bengaluru, India</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Sumedha Adhikari · HR Business Partner</span>
+    <span>Psst: type <kbd>h</kbd> <kbd>i</kbd> <kbd>r</kbd> <kbd>e</kbd> anywhere.</span>
+  </div>
+</footer>
+<div class="stage" id="stage" aria-hidden="true"><i></i><span class="lbl">Cycle stage</span><span id="stageName">Goal setting</span><b id="stagePct">0%</b></div>
+<div class="palette" id="palette" hidden>
+  <div class="pal-box" role="dialog" aria-modal="true" aria-label="Command menu">
+    <input id="palInput" type="text" placeholder="Jump to a section, switch lens, run a demo…" autocomplete="off" aria-controls="palList">
+    <ul id="palList" role="listbox"></ul>
+    <div class="pal-foot"><span><kbd>↑</kbd><kbd>↓</kbd>move</span><span><kbd>↵</kbd>run</span><span><kbd>esc</kbd>close</span></div>
+  </div>
+</div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var darkMq = window.matchMedia('(prefers-color-scheme: dark)');
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  /* ---- Lens / mode ---- */
+  var buttons = document.querySelectorAll('.lens button');
+  function systemLens() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'dark') return 'analyst';
+    if (t === 'light') return 'boardroom';
+    return darkMq.matches ? 'analyst' : 'boardroom';
+  }
+  function apply(mode) {
+    if (mode) root.setAttribute('data-mode', mode); else root.removeAttribute('data-mode');
+    var lens = mode || systemLens();
+    root.setAttribute('data-lens', lens);
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.set === lens)); });
+  }
+  var saved = store('sa-lens');
+  apply(saved || null);
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { var r = b.getBoundingClientRect(); switchLens(b.dataset.set, r.left + r.width / 2, r.top + r.height / 2); });
+  });
+  function switchLens(mode, x, y) {
+    store('sa-lens', mode);
+    if (reduce || !document.startViewTransition || root.getAttribute('data-lens') === mode) { apply(mode); return; }
+    var rad = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    document.startViewTransition(function () { apply(mode); }).ready.then(function () {
+      root.animate({ clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + rad + 'px at ' + x + 'px ' + y + 'px)'] },
+        { duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)', pseudoElement: '::view-transition-new(root)' });
+    }).catch(function () {});
+  }
+  function resync() { if (!root.hasAttribute('data-mode')) apply(null); }
+  if (darkMq.addEventListener) darkMq.addEventListener('change', resync);
+  new MutationObserver(resync).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+
+  /* ---- Count-up (numbers are final in markup; this only replays them) ---- */
+  if (!reduce) {
+    var counters = document.querySelectorAll('[data-count]');
+    var start = performance.now();
+    counters.forEach(function (el) { el.dataset.final = el.textContent; });
+    (function tick(now) {
+      var p = Math.min(1, (now - start) / 1400), e = 1 - Math.pow(1 - p, 3);
+      counters.forEach(function (el) {
+        el.textContent = p >= 1 ? el.dataset.final : Math.round(+el.dataset.count * e).toLocaleString('en-US');
+      });
+      if (p < 1) requestAnimationFrame(tick);
+    })(start);
+  }
+
+  /* ---- Calibration: 650-dot unit chart ---- */
+  var calib = document.getElementById('calib');
+  var calibBtn = document.getElementById('calibBtn');
+  var cv = document.getElementById('dots'), cx = cv.getContext('2d');
+  var N = 650, GAP = 12, PER_ROW = 10;
+  var pBefore = [4, 9, 31, 36, 20], pAfter = [7, 18, 46, 21, 8];
+  function counts(p) { var c = p.map(function (v) { return Math.round(v * N / 100); }); c[2] += N - c.reduce(function (a, b) { return a + b; }, 0); return c; }
+  function buckets(c) { var out = [], b, k; for (b = 0; b < 5; b++) for (k = 0; k < c[b]; k++) out.push([b, k]); return out; }
+  var cB = counts(pBefore), cA = counts(pAfter), bB = buckets(cB), bA = buckets(cA);
+  var W = 0, H = 0, pitch = 7, colW = 0, dots = [], state = 'before', animating = false, t0 = 0;
+  function layout() {
+    var dpr = window.devicePixelRatio || 1;
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    colW = (W - GAP * 4) / 5;
+    pitch = Math.min(colW / PER_ROW, (H - 30) / Math.ceil(Math.max.apply(null, cA.concat(cB)) / PER_ROW));
+  }
+  function pos(bk) {
+    var b = bk[0], k = bk[1], row = Math.floor(k / PER_ROW), col = k % PER_ROW;
+    var x0 = b * (colW + GAP) + (colW - pitch * PER_ROW) / 2;
+    return { x: x0 + col * pitch + pitch / 2, y: H - 4 - row * pitch - pitch / 2 };
+  }
+  function target(i) { return pos(state === 'before' ? bB[i] : bA[i]); }
+  function init() { dots = []; for (var i = 0; i < N; i++) { var t = target(i); dots.push({ x: t.x, y: t.y, fx: t.x, fy: t.y, tx: t.x, ty: t.y, d: 0 }); } }
+  function tokens() { var cs = getComputedStyle(root); return { accent: cs.getPropertyValue('--accent').trim(), signal: cs.getPropertyValue('--signal').trim(), good: cs.getPropertyValue('--good').trim(), ink: cs.getPropertyValue('--ink').trim(), muted: cs.getPropertyValue('--muted').trim() }; }
+  function draw(now) {
+    var c = tokens(), r = pitch * 0.36, done = true, i, d, p, e;
+    cx.clearRect(0, 0, W, H);
+    for (i = 0; i < N; i++) {
+      d = dots[i];
+      if (animating) {
+        p = Math.min(1, Math.max(0, (now - t0 - d.d) / 850)); if (p < 1) done = false;
+        e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+        d.x = d.fx + (d.tx - d.fx) * e; d.y = d.fy + (d.ty - d.fy) * e - Math.sin(p * Math.PI) * 26 * (d.fx !== d.tx ? 1 : 0);
+      }
+      cx.fillStyle = state === 'before' ? (bB[i][0] >= 3 ? c.signal : c.accent) : (bA[i][0] !== bB[i][0] ? c.good : c.accent);
+      cx.beginPath(); cx.arc(d.x, d.y, r, 0, 6.2832); cx.fill();
+    }
+    var cur = state === 'before' ? cB : cA, pct = state === 'before' ? pBefore : pAfter, tops = [];
+    cx.font = '600 12px "JetBrains Mono", ui-monospace, monospace'; cx.textAlign = 'center'; cx.fillStyle = c.ink;
+    for (i = 0; i < 5; i++) {
+      var x = i * (colW + GAP) + colW / 2, y = H - 4 - Math.ceil(cur[i] / PER_ROW) * pitch;
+      tops.push([x, y]); cx.fillText(pct[i] + '%', x, y - 8);
+    }
+    if (state === 'after') {
+      cx.save(); cx.globalAlpha = animating && !done ? 0.15 : 0.5; cx.strokeStyle = c.ink; cx.lineWidth = 1.5; cx.setLineDash([5, 5]);
+      cx.beginPath(); cx.moveTo(0, H - 4);
+      var pts = [[0, H - 4]].concat(tops).concat([[W, H - 4]]);
+      for (i = 1; i < pts.length; i++) { var mx = (pts[i - 1][0] + pts[i][0]) / 2, my = (pts[i - 1][1] + pts[i][1]) / 2; cx.quadraticCurveTo(pts[i - 1][0], pts[i - 1][1] - 18, mx, my); }
+      cx.lineTo(W, H - 4); cx.stroke(); cx.restore();
+    }
+    if (animating) { if (done) animating = false; else requestAnimationFrame(draw); }
+  }
+  function animateTo(scatter) {
+    for (var i = 0; i < N; i++) {
+      var d = dots[i], t = target(i);
+      d.fx = scatter ? Math.random() * W : d.x; d.fy = scatter ? Math.random() * H * 0.9 : d.y;
+      d.tx = t.x; d.ty = t.y; d.d = scatter ? Math.random() * 450 : (i % PER_ROW) * 18 + Math.random() * 220;
+    }
+    if (reduce) { dots.forEach(function (d) { d.x = d.tx; d.y = d.ty; }); draw(0); return; }
+    if (!animating) { animating = true; t0 = performance.now(); requestAnimationFrame(draw); } else t0 = performance.now();
+  }
+  layout(); init(); draw(0);
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); animateTo(true); } }, { threshold: 0.35 });
+    io.observe(cv);
+  }
+  var rT; window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { layout(); animating = false; init(); draw(0); }, 120); });
+  new MutationObserver(function () { if (!animating) draw(0); }).observe(root, { attributes: true, attributeFilter: ['data-mode', 'data-theme', 'data-lens'] });
+  if (darkMq.addEventListener) darkMq.addEventListener('change', function () { if (!animating) draw(0); });
+  function calibrate() {
+    var toAfter = state === 'before';
+    state = toAfter ? 'after' : 'before';
+    calib.dataset.state = state;
+    animateTo(false);
+    document.getElementById('calibNum').textContent = toAfter ? '−10%' : 'Skewed';
+    document.getElementById('calibCap').textContent = toAfter ? 'skewness after calibration' : 'Press calibrate to see the shift';
+    calibBtn.textContent = toAfter ? 'Reset' : 'Calibrate';
+  }
+  calibBtn.addEventListener('click', calibrate);
+
+  /* ---- Project filter ---- */
+  var cases = document.getElementById('cases');
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.dataset.filter;
+      document.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      cases.classList.toggle('filtered', f !== 'all');
+      cases.querySelectorAll('.case').forEach(function (c) { c.hidden = f !== 'all' && c.dataset.tags.split(' ').indexOf(f) < 0; });
+    });
+  });
+
+  /* ---- Review demo ---- */
+  var rows = document.querySelectorAll('#rows .row:not(.head)');
+  var meter = document.getElementById('meter');
+  var outcome = document.getElementById('outcome');
+  var runBtn = document.getElementById('runReview');
+  var running = false;
+  function runReview() {
+    if (running) return;
+    running = true; runBtn.disabled = true;
+    rows.forEach(function (r) { r.classList.remove('done'); r.querySelector('.st').textContent = 'Pending'; });
+    meter.style.setProperty('--w', '0%');
+    outcome.innerHTML = 'Reading evidence…<small>Mapping to Assistant Manager expectations</small>';
+    var step = reduce ? 0 : 520;
+    rows.forEach(function (r, i) {
+      setTimeout(function () {
+        r.classList.add('done');
+        r.querySelector('.st').textContent = i === rows.length - 1 ? 'Exceeds' : 'Met ✓';
+        meter.style.setProperty('--w', Math.round(((i + 1) / rows.length) * 96) + '%');
+      }, step * (i + 1));
+    });
+    setTimeout(function () {
+      outcome.innerHTML = 'Outstanding<small>6 of 6 expectations met · bias check: evidence spans 2020–2026, low recency bias</small>';
+      runBtn.disabled = false; runBtn.textContent = 'Run again'; running = false;
+    }, step * (rows.length + 1));
+  }
+  runBtn.addEventListener('click', runReview);
+  document.getElementById('jumpReview').addEventListener('click', function () { setTimeout(runReview, reduce ? 0 : 600); });
+
+  /* ---- Copy email ---- */
+  var copyBtn = document.getElementById('copyEmail');
+  copyBtn.addEventListener('click', function () {
+    var text = document.getElementById('email').textContent;
+    function done(msg) { copyBtn.textContent = msg; setTimeout(function () { copyBtn.textContent = 'Copy email'; }, 1800); }
+    function select() { var r = document.createRange(); r.selectNodeContents(document.getElementById('email')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected, press copy'); }
+    try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, select); } catch (e) { select(); }
+  });
+
+  /* ---- Easter egg: type "hire" ---- */
+  var buf = '', toast = document.getElementById('toast');
+  function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); setTimeout(function () { toast.classList.remove('show'); }, 3200); }
+  document.addEventListener('keydown', function (e) {
+    if (e.target.closest && e.target.closest('input, textarea')) return;
+    buf = (buf + (e.key || '').toLowerCase()).slice(-4);
+    if (buf === 'hire') { buf = ''; celebrate(); }
+  });
+  function celebrate() {
+    showToast('Offer accepted in principle. Email me and let’s make it official.');
+    if (reduce) return;
+    var cv = document.getElementById('confetti'), ctx = cv.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; ctx.scale(dpr, dpr);
+    var cs = getComputedStyle(root);
+    var colors = ['--accent', '--signal', '--good', '--ink'].map(function (t) { return cs.getPropertyValue(t).trim(); });
+    var parts = [];
+    for (var i = 0; i < 140; i++) {
+      parts.push({ x: innerWidth / 2 + (Math.random() - .5) * 120, y: innerHeight + 10, vx: (Math.random() - .5) * 9, vy: -(9 + Math.random() * 9),
+        w: 5 + Math.random() * 5, h: 10 + Math.random() * 18, r: Math.random() * 6, vr: (Math.random() - .5) * .3, c: colors[i % colors.length] });
+    }
+    var t0 = performance.now();
+    (function frame(now) {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      parts.forEach(function (p) {
+        p.vy += .28; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+      });
+      if (now - t0 < 3200) requestAnimationFrame(frame); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+    })(t0);
+  }
+
+  /* ---- Rotating headline word ---- */
+  var rot = document.getElementById('rot'), words = ['fair', 'unbiased', 'defensible', 'human'], wi = 0;
+  if (!reduce) setInterval(function () {
+    if (document.hidden) return;
+    wi = (wi + 1) % words.length;
+    var to = words[wi], f = 0, abc = 'abcdefghijklmnopqrstuvwxyz';
+    var id = setInterval(function () {
+      f++; var out = '';
+      for (var i = 0; i < to.length; i++) out += i < f / 2 ? to[i] : abc[Math.random() * 26 | 0];
+      rot.textContent = out;
+      if (f / 2 >= to.length) { clearInterval(id); rot.textContent = to; }
+    }, 34);
+  }, 3000);
+
+  /* ---- Tilt + spotlight ---- */
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  var prof = document.querySelector('.profile');
+  if (fine && !reduce) {
+    prof.addEventListener('pointermove', function (e) {
+      var r = prof.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      prof.style.setProperty('--ry', ((px - .5) * 10).toFixed(2) + 'deg');
+      prof.style.setProperty('--rx', ((.5 - py) * 8).toFixed(2) + 'deg');
+      prof.style.setProperty('--mx', (px * 100) + '%'); prof.style.setProperty('--my', (py * 100) + '%');
+      prof.style.setProperty('--glare', '1');
+    });
+    prof.addEventListener('pointerleave', function () { ['--rx', '--ry', '--glare'].forEach(function (k) { prof.style.removeProperty(k); }); });
+    document.querySelectorAll('.case, .principle, .app, .award:not(.top)').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) { var r = el.getBoundingClientRect(); el.style.setProperty('--mx', (e.clientX - r.left) + 'px'); el.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
+      el.addEventListener('pointerleave', function () { el.style.removeProperty('--mx'); el.style.removeProperty('--my'); });
+    });
+  }
+
+  /* ---- Performance-cycle scroll tracker ---- */
+  var prog = document.getElementById('prog'), stageName = document.getElementById('stageName'), stagePct = document.getElementById('stagePct');
+  var stages = [['top', 'Goal setting'], ['work', 'Mid-year check-in'], ['review', 'Calibration'], ['built', 'Development'], ['journey', 'Year-end review'], ['awards', 'Recognition'], ['contact', 'Offer stage']]
+    .map(function (s) { return [document.getElementById(s[0]), s[1]]; });
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var max = document.documentElement.scrollHeight - innerHeight, p = max > 0 ? Math.min(1, scrollY / max) : 0;
+    prog.style.width = (p * 100) + '%';
+    var name = stages[0][1];
+    stages.forEach(function (s) { if (s[0] && s[0].getBoundingClientRect().top < innerHeight * 0.45) name = s[1]; });
+    if (p > 0.985) name = 'Offer stage';
+    stageName.textContent = name; stagePct.textContent = Math.round(p * 100) + '%';
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* ---- Command menu ---- */
+  var pal = document.getElementById('palette'), palInput = document.getElementById('palInput'), palList = document.getElementById('palList');
+  function go(id) { return function () { document.getElementById(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }; }
+  function lensCmd(m) { return function () { var b = document.querySelector('.lens [data-set="' + m + '"]').getBoundingClientRect(); switchLens(m, b.left + b.width / 2, b.top + b.height / 2); }; }
+  var cmds = [
+    ['Selected work', 'Go to', go('work')], ['Run a performance review on me', 'Demo', function () { go('review')(); setTimeout(runReview, reduce ? 0 : 600); }],
+    ['Calibrate the ratings', 'Demo', function () { go('calib')(); setTimeout(function () { if (state === 'before') calibrate(); }, reduce ? 0 : 500); }],
+    ['Apps I built', 'Go to', go('built')], ['Capabilities', 'Go to', go('capabilities')], ['Career journey', 'Go to', go('journey')],
+    ['Awards & certifications', 'Go to', go('awards')], ['Contact', 'Go to', go('contact')],
+    ['Boardroom lens', 'Lens', lensCmd('boardroom')], ['Analyst lens', 'Lens', lensCmd('analyst')], ['Coach lens', 'Lens', lensCmd('coach')],
+    ['Copy email address', 'Action', function () { document.getElementById('copyEmail').click(); go('contact')(); }],
+    ['Hire Sumedha', 'Action', celebrate]
+  ];
+  var shown = [], sel = 0, lastFocus = null;
+  function renderPal() {
+    var q = palInput.value.trim().toLowerCase();
+    shown = cmds.filter(function (c) { return !q || (c[0] + ' ' + c[1]).toLowerCase().indexOf(q) >= 0; });
+    sel = Math.min(sel, Math.max(0, shown.length - 1));
+    palList.innerHTML = '';
+    if (!shown.length) { var li = document.createElement('li'); li.className = 'empty'; li.textContent = 'No match. Try “work”, “lens” or “hire”.'; palList.appendChild(li); return; }
+    shown.forEach(function (c, i) {
+      var li = document.createElement('li'); li.setAttribute('role', 'option'); li.setAttribute('aria-selected', String(i === sel));
+      li.innerHTML = '<span></span><small></small>'; li.firstChild.textContent = c[0]; li.lastChild.textContent = c[1];
+      li.addEventListener('mousemove', function () { if (sel !== i) { sel = i; renderPal(); } });
+      li.addEventListener('click', function () { runCmd(i); });
+      palList.appendChild(li);
+    });
+  }
+  function openPal() { lastFocus = document.activeElement; pal.hidden = false; palInput.value = ''; sel = 0; renderPal(); palInput.focus(); }
+  function closePal() { pal.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  function runCmd(i) { var c = shown[i]; closePal(); if (c) setTimeout(c[2], 60); }
+  document.getElementById('palBtn').addEventListener('click', openPal);
+  pal.addEventListener('click', function (e) { if (e.target === pal) closePal(); });
+  palInput.addEventListener('input', function () { sel = 0; renderPal(); });
+  palInput.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % Math.max(1, shown.length); renderPal(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + shown.length) % Math.max(1, shown.length); renderPal(); }
+    else if (e.key === 'Enter') { e.preventDefault(); runCmd(sel); }
+    else if (e.key === 'Escape') { e.preventDefault(); closePal(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); pal.hidden ? openPal() : closePal(); }
+    else if (e.key === '/' && pal.hidden && !(e.target.closest && e.target.closest('input, textarea'))) { e.preventDefault(); openPal(); }
+  });
+})();
+</script>
+</html>
