@@ -68,6 +68,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
 body {
@@ -155,16 +156,13 @@ p { margin: 0; }
 .calib[data-state="before"] .calib-result b { color: var(--signal); }
 .calib-result small { color: var(--muted); font-size: 14px; }
 .chart { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 260px; }
-.bars { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 2vw, 18px); align-items: end; height: 220px; border-bottom: 1px solid var(--line); position: relative; }
-.bars::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(to top, var(--line) 0 1px, transparent 1px 25%); opacity: .6; pointer-events: none; }
-.bar { position: relative; height: var(--h); background: var(--accent); border-radius: 6px 6px 0 0; transition: height .9s cubic-bezier(.2,.8,.2,1), background .4s; }
-.bar.hot { background: var(--signal); }
-.bar span { position: absolute; top: -22px; left: 0; right: 0; text-align: center; font: 600 12px/1 var(--font-mono); color: var(--ink); font-variant-numeric: tabular-nums; }
-.axis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 2vw, 18px); padding-top: 10px; }
+.dotbox { position: relative; min-height: 250px; height: 100%; border-bottom: 1px solid var(--line); }
+.dotbox canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.calib .axis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; padding-top: 10px; }
 .axis span { font: 500 11px/1.25 var(--font-mono); color: var(--muted); text-align: center; }
-.curve { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
-.curve path { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 5 5; opacity: .45; transition: opacity .4s; }
-.calib[data-state="before"] .curve path { opacity: 0; }
+.dot-key { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--muted); }
+.dot-key span { display: inline-flex; align-items: center; gap: 6px; }
+.dot-key i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .note { font-size: 12px; color: var(--muted); }
 
 /* ---------- Stats ---------- */
@@ -323,6 +321,40 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
 .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; background: var(--ink); color: var(--bg); padding: 12px 18px; border-radius: 999px; font-weight: 600; font-size: 14px; z-index: 60; transition: opacity .3s, transform .3s; max-width: calc(100% - 32px); text-align: center; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Wow layer ---------- */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+.hero h1 em { display: inline-block; }
+.hero-grid { perspective: 1400px; }
+.profile { position: relative; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .3s ease, background .4s; will-change: transform; }
+.profile::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 62%); opacity: var(--glare, 0); transition: opacity .3s; }
+.case, .principle, .app { position: relative; }
+.case::before, .principle::before, .app::before, .award:not(.top)::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(260px circle at var(--mx, -999px) var(--my, -999px), color-mix(in srgb, var(--accent) 13%, transparent), transparent 70%); }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, transparent calc(20% - 1px), var(--line) 0 20%, transparent 0 calc(40% - 1px), var(--line) 0 40%, transparent 0 calc(60% - 1px), var(--line) 0 60%, transparent 0 calc(80% - 1px), var(--line) 0 80%, transparent 0); }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .12s linear; }
+.stage { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: flex; align-items: center; gap: 10px; padding: 9px 14px 9px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: 13px; }
+.stage i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.stage .lbl { font: 600 10px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.stage b { font: 600 12px/1 var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .stage { display: none; } }
+.kbtn { appearance: none; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); border-radius: 999px; padding: 7px 10px 7px 12px; font: 500 13px/1 var(--font-body); cursor: pointer; }
+.kbtn svg { width: 14px; height: 14px; }
+.kbtn kbd { font-size: 11px; }
+.top-right { display: flex; align-items: center; gap: 10px; }
+@media (max-width: 560px) { .kbtn span, .kbtn kbd { display: none; } .kbtn { padding: 9px; } }
+.palette { position: fixed; inset: 0; z-index: 70; background: color-mix(in srgb, var(--ink) 38%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; justify-items: center; align-items: start; padding: calc(12vh + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); animation: palIn .18s ease; }
+@keyframes palIn { from { opacity: 0; } }
+.pal-box { width: min(560px, 100%); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.45); overflow: hidden; animation: palUp .22s cubic-bezier(.2,.8,.2,1); }
+@keyframes palUp { from { transform: translateY(10px) scale(.98); } }
+.pal-box input { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: 500 17px/1 var(--font-body); padding: 18px 20px; outline: none; }
+.pal-box ul { list-style: none; margin: 0; padding: 8px; max-height: 50vh; overflow-y: auto; }
+.pal-box li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 10px; cursor: pointer; font-size: 15px; }
+.pal-box li small { font: 600 10px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.pal-box li[aria-selected="true"] { background: var(--accent-soft); color: var(--ink); }
+.pal-box li[aria-selected="true"] small { color: var(--accent); }
+.pal-box .empty { padding: 18px 12px; color: var(--muted); font-size: 14px; cursor: default; }
+.pal-foot { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); background: var(--sunken); }
+.pal-foot kbd { margin-right: 3px; }
 </style>
 
 <header class="top">
@@ -331,12 +363,16 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
     <nav class="links" aria-label="Sections">
       <a href="#work">Work</a><a href="#built">Built</a><a href="#capabilities">Capabilities</a><a href="#journey">Journey</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
     </nav>
+    <div class="top-right">
+    <button class="kbtn" id="palBtn" type="button" aria-label="Open command menu"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span>Jump to</span><kbd>⌘K</kbd></button>
     <div class="lens" role="group" aria-label="Choose a lens">
       <button type="button" data-set="boardroom" aria-pressed="false" title="Boardroom: outcomes first"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="12" height="9" rx="1.5"/><path d="M5 14h6"/></svg><span>Boardroom</span></button>
       <button type="button" data-set="analyst" aria-pressed="false" title="Analyst: the numbers"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13V8M8 13V3M13 13V6"/></svg><span>Analyst</span></button>
       <button type="button" data-set="coach" aria-pressed="false" title="Coach: the people side"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="2.2"/><circle cx="11" cy="6.5" r="1.8"/><path d="M1.8 13c.6-2.3 2-3.4 3.7-3.4s3.1 1.1 3.7 3.4M9.6 10.3c.4-.3.9-.5 1.4-.5 1.4 0 2.4.9 2.9 2.7"/></svg><span>Coach</span></button>
     </div>
+    </div>
   </div>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
 </header>
 
 <main id="top">
@@ -345,7 +381,7 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
       <div class="hero-grid">
         <div>
           <div class="eyebrow">HR Business Partner · Performance · Rewards · People Analytics</div>
-          <h1>I make people decisions <em>fair</em>, fast and measurable.</h1>
+          <h1 aria-label="I make people decisions fair, fast and measurable.">I make people decisions <em id="rot" aria-hidden="true">fair</em>, fast and measurable.</h1>
           <p class="lede">
             <span data-lens="boardroom">Nearly seven years across Deloitte and Infosys turning performance, pay and workforce data into decisions senior leaders can defend. 65,000+ workforce in scope, programs delivered on time with zero re-work.</span>
             <span data-lens="analyst">I build the numbers leaders decide on: a Power BI talent dashboard over 65,000+ headcount, attrition diagnostics, calibration analytics, and an AI model that maps manager feedback to rating expectations.</span>
@@ -386,18 +422,12 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
           <p>I designed and ran a calibration program at Deloitte USI that reduced rating distribution skewness by 10%, so pay-for-performance decisions rest on ratings that mean the same thing across teams.</p>
           <div class="calib-result"><b class="num" id="calibNum">Skewed</b><small id="calibCap">Press calibrate to see the shift</small></div>
           <div><button class="btn primary" type="button" id="calibBtn">Calibrate</button></div>
-          <p class="note">Bars show an illustrative distribution, not actual Deloitte data. The 10% outcome is real.</p>
+          <p class="note">The distribution is illustrative, not actual Deloitte data. The 10% outcome is real.</p>
         </div>
         <div class="chart" aria-label="Rating distribution chart">
-          <div class="bars" id="bars">
-            <svg class="curve" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0,96 C14,92 22,62 34,40 C42,24 47,20 52,20 C58,20 64,30 72,52 C82,78 90,92 100,96"/></svg>
-            <div class="bar" style="--h:4%"><span>4%</span></div>
-            <div class="bar" style="--h:9%"><span>9%</span></div>
-            <div class="bar" style="--h:31%"><span>31%</span></div>
-            <div class="bar hot" style="--h:36%"><span>36%</span></div>
-            <div class="bar hot" style="--h:20%"><span>20%</span></div>
-          </div>
+          <div class="dotbox"><canvas id="dots" role="img" aria-label="Unit chart of 650 dots, each about 100 people, across five rating levels. Before calibration ratings bunch at Exceeds and Outstanding; after, they centre on Meets."></canvas></div>
           <div class="axis"><span>Below</span><span>Partly meets</span><span>Meets</span><span>Exceeds</span><span>Outstanding</span></div>
+          <div class="dot-key"><span><i style="background:var(--accent)"></i>≈ 100 people</span><span><i style="background:var(--signal)"></i>Top-heavy ratings</span><span><i style="background:var(--good)"></i>Moved in calibration</span></div>
         </div>
       </div>
     </div>
@@ -697,6 +727,14 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
     <span>Psst: type <kbd>h</kbd> <kbd>i</kbd> <kbd>r</kbd> <kbd>e</kbd> anywhere.</span>
   </div>
 </footer>
+<div class="stage" id="stage" aria-hidden="true"><i></i><span class="lbl">Cycle stage</span><span id="stageName">Goal setting</span><b id="stagePct">0%</b></div>
+<div class="palette" id="palette" hidden>
+  <div class="pal-box" role="dialog" aria-modal="true" aria-label="Command menu">
+    <input id="palInput" type="text" placeholder="Jump to a section, switch lens, run a demo…" autocomplete="off" aria-controls="palList">
+    <ul id="palList" role="listbox"></ul>
+    <div class="pal-foot"><span><kbd>↑</kbd><kbd>↓</kbd>move</span><span><kbd>↵</kbd>run</span><span><kbd>esc</kbd>close</span></div>
+  </div>
+</div>
 <canvas id="confetti" aria-hidden="true"></canvas>
 <div class="toast" id="toast" role="status"></div>
 
@@ -724,8 +762,17 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
   var saved = store('sa-lens');
   apply(saved || null);
   buttons.forEach(function (b) {
-    b.addEventListener('click', function () { store('sa-lens', b.dataset.set); apply(b.dataset.set); });
+    b.addEventListener('click', function () { var r = b.getBoundingClientRect(); switchLens(b.dataset.set, r.left + r.width / 2, r.top + r.height / 2); });
   });
+  function switchLens(mode, x, y) {
+    store('sa-lens', mode);
+    if (reduce || !document.startViewTransition || root.getAttribute('data-lens') === mode) { apply(mode); return; }
+    var rad = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    document.startViewTransition(function () { apply(mode); }).ready.then(function () {
+      root.animate({ clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + rad + 'px at ' + x + 'px ' + y + 'px)'] },
+        { duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)', pseudoElement: '::view-transition-new(root)' });
+    }).catch(function () {});
+  }
   function resync() { if (!root.hasAttribute('data-mode')) apply(null); }
   if (darkMq.addEventListener) darkMq.addEventListener('change', resync);
   new MutationObserver(resync).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
@@ -744,27 +791,86 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
     })(start);
   }
 
-  /* ---- Calibration ---- */
+  /* ---- Calibration: 650-dot unit chart ---- */
   var calib = document.getElementById('calib');
-  var bars = document.querySelectorAll('#bars .bar');
-  var before = [4, 9, 31, 36, 20], after = [7, 18, 46, 21, 8];
   var calibBtn = document.getElementById('calibBtn');
-  function setBars(vals, hot) {
-    bars.forEach(function (b, i) {
-      b.style.setProperty('--h', (vals[i] * 2) + '%');
-      b.querySelector('span').textContent = vals[i] + '%';
-      b.classList.toggle('hot', hot && i >= 3);
-    });
+  var cv = document.getElementById('dots'), cx = cv.getContext('2d');
+  var N = 650, GAP = 12, PER_ROW = 10;
+  var pBefore = [4, 9, 31, 36, 20], pAfter = [7, 18, 46, 21, 8];
+  function counts(p) { var c = p.map(function (v) { return Math.round(v * N / 100); }); c[2] += N - c.reduce(function (a, b) { return a + b; }, 0); return c; }
+  function buckets(c) { var out = [], b, k; for (b = 0; b < 5; b++) for (k = 0; k < c[b]; k++) out.push([b, k]); return out; }
+  var cB = counts(pBefore), cA = counts(pAfter), bB = buckets(cB), bA = buckets(cA);
+  var W = 0, H = 0, pitch = 7, colW = 0, dots = [], state = 'before', animating = false, t0 = 0;
+  function layout() {
+    var dpr = window.devicePixelRatio || 1;
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    colW = (W - GAP * 4) / 5;
+    pitch = Math.min(colW / PER_ROW, (H - 30) / Math.ceil(Math.max.apply(null, cA.concat(cB)) / PER_ROW));
   }
-  setBars(before, true);
-  calibBtn.addEventListener('click', function () {
-    var isBefore = calib.dataset.state === 'before';
-    calib.dataset.state = isBefore ? 'after' : 'before';
-    setBars(isBefore ? after : before, !isBefore);
-    document.getElementById('calibNum').textContent = isBefore ? '−10%' : 'Skewed';
-    document.getElementById('calibCap').textContent = isBefore ? 'skewness after calibration' : 'Press calibrate to see the shift';
-    calibBtn.textContent = isBefore ? 'Reset' : 'Calibrate';
-  });
+  function pos(bk) {
+    var b = bk[0], k = bk[1], row = Math.floor(k / PER_ROW), col = k % PER_ROW;
+    var x0 = b * (colW + GAP) + (colW - pitch * PER_ROW) / 2;
+    return { x: x0 + col * pitch + pitch / 2, y: H - 4 - row * pitch - pitch / 2 };
+  }
+  function target(i) { return pos(state === 'before' ? bB[i] : bA[i]); }
+  function init() { dots = []; for (var i = 0; i < N; i++) { var t = target(i); dots.push({ x: t.x, y: t.y, fx: t.x, fy: t.y, tx: t.x, ty: t.y, d: 0 }); } }
+  function tokens() { var cs = getComputedStyle(root); return { accent: cs.getPropertyValue('--accent').trim(), signal: cs.getPropertyValue('--signal').trim(), good: cs.getPropertyValue('--good').trim(), ink: cs.getPropertyValue('--ink').trim(), muted: cs.getPropertyValue('--muted').trim() }; }
+  function draw(now) {
+    var c = tokens(), r = pitch * 0.36, done = true, i, d, p, e;
+    cx.clearRect(0, 0, W, H);
+    for (i = 0; i < N; i++) {
+      d = dots[i];
+      if (animating) {
+        p = Math.min(1, Math.max(0, (now - t0 - d.d) / 850)); if (p < 1) done = false;
+        e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+        d.x = d.fx + (d.tx - d.fx) * e; d.y = d.fy + (d.ty - d.fy) * e - Math.sin(p * Math.PI) * 26 * (d.fx !== d.tx ? 1 : 0);
+      }
+      cx.fillStyle = state === 'before' ? (bB[i][0] >= 3 ? c.signal : c.accent) : (bA[i][0] !== bB[i][0] ? c.good : c.accent);
+      cx.beginPath(); cx.arc(d.x, d.y, r, 0, 6.2832); cx.fill();
+    }
+    var cur = state === 'before' ? cB : cA, pct = state === 'before' ? pBefore : pAfter, tops = [];
+    cx.font = '600 12px "JetBrains Mono", ui-monospace, monospace'; cx.textAlign = 'center'; cx.fillStyle = c.ink;
+    for (i = 0; i < 5; i++) {
+      var x = i * (colW + GAP) + colW / 2, y = H - 4 - Math.ceil(cur[i] / PER_ROW) * pitch;
+      tops.push([x, y]); cx.fillText(pct[i] + '%', x, y - 8);
+    }
+    if (state === 'after') {
+      cx.save(); cx.globalAlpha = animating && !done ? 0.15 : 0.5; cx.strokeStyle = c.ink; cx.lineWidth = 1.5; cx.setLineDash([5, 5]);
+      cx.beginPath(); cx.moveTo(0, H - 4);
+      var pts = [[0, H - 4]].concat(tops).concat([[W, H - 4]]);
+      for (i = 1; i < pts.length; i++) { var mx = (pts[i - 1][0] + pts[i][0]) / 2, my = (pts[i - 1][1] + pts[i][1]) / 2; cx.quadraticCurveTo(pts[i - 1][0], pts[i - 1][1] - 18, mx, my); }
+      cx.lineTo(W, H - 4); cx.stroke(); cx.restore();
+    }
+    if (animating) { if (done) animating = false; else requestAnimationFrame(draw); }
+  }
+  function animateTo(scatter) {
+    for (var i = 0; i < N; i++) {
+      var d = dots[i], t = target(i);
+      d.fx = scatter ? Math.random() * W : d.x; d.fy = scatter ? Math.random() * H * 0.9 : d.y;
+      d.tx = t.x; d.ty = t.y; d.d = scatter ? Math.random() * 450 : (i % PER_ROW) * 18 + Math.random() * 220;
+    }
+    if (reduce) { dots.forEach(function (d) { d.x = d.tx; d.y = d.ty; }); draw(0); return; }
+    if (!animating) { animating = true; t0 = performance.now(); requestAnimationFrame(draw); } else t0 = performance.now();
+  }
+  layout(); init(); draw(0);
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); animateTo(true); } }, { threshold: 0.35 });
+    io.observe(cv);
+  }
+  var rT; window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { layout(); animating = false; init(); draw(0); }, 120); });
+  new MutationObserver(function () { if (!animating) draw(0); }).observe(root, { attributes: true, attributeFilter: ['data-mode', 'data-theme', 'data-lens'] });
+  if (darkMq.addEventListener) darkMq.addEventListener('change', function () { if (!animating) draw(0); });
+  function calibrate() {
+    var toAfter = state === 'before';
+    state = toAfter ? 'after' : 'before';
+    calib.dataset.state = state;
+    animateTo(false);
+    document.getElementById('calibNum').textContent = toAfter ? '−10%' : 'Skewed';
+    document.getElementById('calibCap').textContent = toAfter ? 'skewness after calibration' : 'Press calibrate to see the shift';
+    calibBtn.textContent = toAfter ? 'Reset' : 'Calibrate';
+  }
+  calibBtn.addEventListener('click', calibrate);
 
   /* ---- Project filter ---- */
   var cases = document.getElementById('cases');
@@ -845,5 +951,99 @@ kbd { font: 600 12px/1 var(--font-mono); padding: 3px 6px; border: 1px solid var
       if (now - t0 < 3200) requestAnimationFrame(frame); else ctx.clearRect(0, 0, innerWidth, innerHeight);
     })(t0);
   }
+
+  /* ---- Rotating headline word ---- */
+  var rot = document.getElementById('rot'), words = ['fair', 'unbiased', 'defensible', 'human'], wi = 0;
+  if (!reduce) setInterval(function () {
+    if (document.hidden) return;
+    wi = (wi + 1) % words.length;
+    var to = words[wi], f = 0, abc = 'abcdefghijklmnopqrstuvwxyz';
+    var id = setInterval(function () {
+      f++; var out = '';
+      for (var i = 0; i < to.length; i++) out += i < f / 2 ? to[i] : abc[Math.random() * 26 | 0];
+      rot.textContent = out;
+      if (f / 2 >= to.length) { clearInterval(id); rot.textContent = to; }
+    }, 34);
+  }, 3000);
+
+  /* ---- Tilt + spotlight ---- */
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  var prof = document.querySelector('.profile');
+  if (fine && !reduce) {
+    prof.addEventListener('pointermove', function (e) {
+      var r = prof.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      prof.style.setProperty('--ry', ((px - .5) * 10).toFixed(2) + 'deg');
+      prof.style.setProperty('--rx', ((.5 - py) * 8).toFixed(2) + 'deg');
+      prof.style.setProperty('--mx', (px * 100) + '%'); prof.style.setProperty('--my', (py * 100) + '%');
+      prof.style.setProperty('--glare', '1');
+    });
+    prof.addEventListener('pointerleave', function () { ['--rx', '--ry', '--glare'].forEach(function (k) { prof.style.removeProperty(k); }); });
+    document.querySelectorAll('.case, .principle, .app, .award:not(.top)').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) { var r = el.getBoundingClientRect(); el.style.setProperty('--mx', (e.clientX - r.left) + 'px'); el.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
+      el.addEventListener('pointerleave', function () { el.style.removeProperty('--mx'); el.style.removeProperty('--my'); });
+    });
+  }
+
+  /* ---- Performance-cycle scroll tracker ---- */
+  var prog = document.getElementById('prog'), stageName = document.getElementById('stageName'), stagePct = document.getElementById('stagePct');
+  var stages = [['top', 'Goal setting'], ['work', 'Mid-year check-in'], ['review', 'Calibration'], ['built', 'Development'], ['journey', 'Year-end review'], ['awards', 'Recognition'], ['contact', 'Offer stage']]
+    .map(function (s) { return [document.getElementById(s[0]), s[1]]; });
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var max = document.documentElement.scrollHeight - innerHeight, p = max > 0 ? Math.min(1, scrollY / max) : 0;
+    prog.style.width = (p * 100) + '%';
+    var name = stages[0][1];
+    stages.forEach(function (s) { if (s[0] && s[0].getBoundingClientRect().top < innerHeight * 0.45) name = s[1]; });
+    if (p > 0.985) name = 'Offer stage';
+    stageName.textContent = name; stagePct.textContent = Math.round(p * 100) + '%';
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* ---- Command menu ---- */
+  var pal = document.getElementById('palette'), palInput = document.getElementById('palInput'), palList = document.getElementById('palList');
+  function go(id) { return function () { document.getElementById(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }; }
+  function lensCmd(m) { return function () { var b = document.querySelector('.lens [data-set="' + m + '"]').getBoundingClientRect(); switchLens(m, b.left + b.width / 2, b.top + b.height / 2); }; }
+  var cmds = [
+    ['Selected work', 'Go to', go('work')], ['Run a performance review on me', 'Demo', function () { go('review')(); setTimeout(runReview, reduce ? 0 : 600); }],
+    ['Calibrate the ratings', 'Demo', function () { go('calib')(); setTimeout(function () { if (state === 'before') calibrate(); }, reduce ? 0 : 500); }],
+    ['Apps I built', 'Go to', go('built')], ['Capabilities', 'Go to', go('capabilities')], ['Career journey', 'Go to', go('journey')],
+    ['Awards & certifications', 'Go to', go('awards')], ['Contact', 'Go to', go('contact')],
+    ['Boardroom lens', 'Lens', lensCmd('boardroom')], ['Analyst lens', 'Lens', lensCmd('analyst')], ['Coach lens', 'Lens', lensCmd('coach')],
+    ['Copy email address', 'Action', function () { document.getElementById('copyEmail').click(); go('contact')(); }],
+    ['Hire Sumedha', 'Action', celebrate]
+  ];
+  var shown = [], sel = 0, lastFocus = null;
+  function renderPal() {
+    var q = palInput.value.trim().toLowerCase();
+    shown = cmds.filter(function (c) { return !q || (c[0] + ' ' + c[1]).toLowerCase().indexOf(q) >= 0; });
+    sel = Math.min(sel, Math.max(0, shown.length - 1));
+    palList.innerHTML = '';
+    if (!shown.length) { var li = document.createElement('li'); li.className = 'empty'; li.textContent = 'No match. Try “work”, “lens” or “hire”.'; palList.appendChild(li); return; }
+    shown.forEach(function (c, i) {
+      var li = document.createElement('li'); li.setAttribute('role', 'option'); li.setAttribute('aria-selected', String(i === sel));
+      li.innerHTML = '<span></span><small></small>'; li.firstChild.textContent = c[0]; li.lastChild.textContent = c[1];
+      li.addEventListener('mousemove', function () { if (sel !== i) { sel = i; renderPal(); } });
+      li.addEventListener('click', function () { runCmd(i); });
+      palList.appendChild(li);
+    });
+  }
+  function openPal() { lastFocus = document.activeElement; pal.hidden = false; palInput.value = ''; sel = 0; renderPal(); palInput.focus(); }
+  function closePal() { pal.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  function runCmd(i) { var c = shown[i]; closePal(); if (c) setTimeout(c[2], 60); }
+  document.getElementById('palBtn').addEventListener('click', openPal);
+  pal.addEventListener('click', function (e) { if (e.target === pal) closePal(); });
+  palInput.addEventListener('input', function () { sel = 0; renderPal(); });
+  palInput.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % Math.max(1, shown.length); renderPal(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + shown.length) % Math.max(1, shown.length); renderPal(); }
+    else if (e.key === 'Enter') { e.preventDefault(); runCmd(sel); }
+    else if (e.key === 'Escape') { e.preventDefault(); closePal(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); pal.hidden ? openPal() : closePal(); }
+    else if (e.key === '/' && pal.hidden && !(e.target.closest && e.target.closest('input, textarea'))) { e.preventDefault(); openPal(); }
+  });
 })();
 </script>
